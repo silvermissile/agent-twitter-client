@@ -445,7 +445,7 @@ export async function createCreateTweetRequest(
   tweetId?: string,
   mediaData?: { data: Buffer; mediaType: string }[],
 ) {
-  const onboardingTaskUrl = 'https://api.twitter.com/1.1/onboarding/task.json';
+  const onboardingTaskUrl = 'https://api.x.com/1.1/onboarding/task.json';
 
   const cookies = await auth.cookieJar().getCookies(onboardingTaskUrl);
   const xCsrfToken = cookies.find((cookie) => cookie.key === 'ct0');
@@ -559,7 +559,7 @@ export async function createCreateNoteTweetRequest(
   tweetId?: string,
   mediaData?: { data: Buffer; mediaType: string }[],
 ) {
-  const onboardingTaskUrl = 'https://api.twitter.com/1.1/onboarding/task.json';
+  const onboardingTaskUrl = 'https://api.x.com/1.1/onboarding/task.json';
 
   const cookies = await auth.cookieJar().getCookies(onboardingTaskUrl);
   const xCsrfToken = cookies.find((cookie) => cookie.key === 'ct0');
@@ -1167,7 +1167,7 @@ export async function createQuoteTweetRequest(
   auth: TwitterAuth,
   mediaData?: { data: Buffer; mediaType: string }[],
 ) {
-  const onboardingTaskUrl = 'https://api.twitter.com/1.1/onboarding/task.json';
+  const onboardingTaskUrl = 'https://api.x.com/1.1/onboarding/task.json';
 
   // Retrieve necessary cookies and tokens
   const cookies = await auth.cookieJar().getCookies(onboardingTaskUrl);
@@ -1385,7 +1385,7 @@ export async function createCreateLongTweetRequest(
   // URL for the long tweet endpoint
   const url =
     'https://x.com/i/api/graphql/YNXM2DGuE2Sff6a2JD3Ztw/CreateNoteTweet';
-  const onboardingTaskUrl = 'https://api.twitter.com/1.1/onboarding/task.json';
+  const onboardingTaskUrl = 'https://api.x.com/1.1/onboarding/task.json';
 
   const cookies = await auth.cookieJar().getCookies(onboardingTaskUrl);
   const xCsrfToken = cookies.find((cookie) => cookie.key === 'ct0');

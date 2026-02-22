@@ -76,7 +76,7 @@ export class TwitterUserAuth extends TwitterGuestAuth {
     // 如果简单检查失败，尝试原始的 API 调用（可能会失败）
     try {
       const res = await requestApi<TwitterUserAuthVerifyCredentials>(
-        'https://api.twitter.com/1.1/account/verify_credentials.json',
+        'https://api.x.com/1.1/account/verify_credentials.json',
         this,
       );
 
