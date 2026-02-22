@@ -143,7 +143,7 @@ async function getSearchTimeline(
   params.set('variables', stringify(variables) ?? '');
 
   const res = await requestApi<SearchTimeline>(
-    `https://x.com/i/api/graphql/gkjsKepM6gl_HmFWoWKfgg/SearchTimeline?${params.toString()}`,
+    `https://x.com/i/api/graphql/nK1dw4oV3k4w5TdtcAdSww/SearchTimeline?${params.toString()}`,
     auth,
   );
 
@@ -230,7 +230,7 @@ export async function fetchQuotedTweetsPage(
   params.set('fieldToggles', stringify(fieldToggles) ?? '');
   params.set('variables', stringify(variables) ?? '');
 
-  const url = `https://x.com/i/api/graphql/1BP5aKg8NvTNvRCyyCyq8g/SearchTimeline?${params.toString()}`;
+  const url = `https://x.com/i/api/graphql/nK1dw4oV3k4w5TdtcAdSww/SearchTimeline?${params.toString()}`;
 
   // Perform the request
   const res = await requestApi(url, auth);
