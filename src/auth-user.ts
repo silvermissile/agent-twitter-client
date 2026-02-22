@@ -62,20 +62,38 @@ export class TwitterUserAuth extends TwitterGuestAuth {
   }
 
   async isLoggedIn(): Promise<boolean> {
-    const res = await requestApi<TwitterUserAuthVerifyCredentials>(
-      'https://api.x.com/1.1/account/verify_credentials.json',
-      this,
-    );
-    if (!res.success) {
-      return false;
+    // 简化的登录检查：验证是否有必需的 cookies
+    // 注意：这是一个 workaround，因为 verify_credentials 端点返回 404
+    const cookies = await this.getCookies();
+    const hasAuthToken = cookies.some((c) => c.key === 'auth_token' && c.value);
+    const hasCt0 = cookies.some((c) => c.key === 'ct0' && c.value);
+    const hasTwid = cookies.some((c) => c.key === 'twid' && c.value);
+
+    if (hasAuthToken && hasCt0 && hasTwid) {
+      return true;
     }
 
-    const { value: verify } = res;
-    this.userProfile = parseProfile(
-      verify as LegacyUserRaw,
-      (verify as unknown as { verified: boolean }).verified,
-    );
-    return verify && !verify.errors?.length;
+    // 如果简单检查失败，尝试原始的 API 调用（可能会失败）
+    try {
+      const res = await requestApi<TwitterUserAuthVerifyCredentials>(
+        'https://api.twitter.com/1.1/account/verify_credentials.json',
+        this,
+      );
+
+      if (!res.success) {
+        return false;
+      }
+
+      const { value: verify } = res;
+      this.userProfile = parseProfile(
+        verify as LegacyUserRaw,
+        (verify as unknown as { verified: boolean }).verified,
+      );
+      return verify && !verify.errors?.length;
+    } catch (error) {
+      // API 调用失败，但如果有必需的 cookies 就认为已登录
+      return hasAuthToken && hasCt0 && hasTwid;
+    }
   }
 
   async me(): Promise<Profile | undefined> {
@@ -165,6 +183,10 @@ export class TwitterUserAuth extends TwitterGuestAuth {
     headers.set('authorization', `Bearer ${this.bearerToken}`);
     headers.set('cookie', await this.getCookieString());
     await this.installCsrfToken(headers);
+    // 添加必需的 Twitter headers
+    headers.set('User-Agent', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36');
+    headers.set('X-Twitter-Active-User', 'yes');
+    headers.set('X-Twitter-Auth-Type', 'OAuth2Session');
   }
 
   private async initLogin() {

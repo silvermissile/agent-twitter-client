@@ -492,7 +492,7 @@ export async function createCreateTweetRequest(
   }
 
   const response = await fetch(
-    'https://twitter.com/i/api/graphql/a1p9RWpkYKBjWv_I3WzS-A/CreateTweet',
+    'https://x.com/i/api/graphql/a1p9RWpkYKBjWv_I3WzS-A/CreateTweet',
     {
       headers,
       body: JSON.stringify({
@@ -605,7 +605,7 @@ export async function createCreateNoteTweetRequest(
   }
 
   const response = await fetch(
-    'https://twitter.com/i/api/graphql/0aWhJJmFlxkxv9TAUJPanA/CreateNoteTweet',
+    'https://x.com/i/api/graphql/0aWhJJmFlxkxv9TAUJPanA/CreateNoteTweet',
     {
       headers,
       body: JSON.stringify({
@@ -1189,7 +1189,7 @@ export async function createQuoteTweetRequest(
   const variables: Record<string, any> = {
     tweet_text: text,
     dark_request: false,
-    attachment_url: `https://twitter.com/twitter/status/${quotedTweetId}`,
+    attachment_url: `https://x.com/twitter/status/${quotedTweetId}`,
     media: {
       media_entities: [],
       possibly_sensitive: false,
@@ -1213,7 +1213,7 @@ export async function createQuoteTweetRequest(
 
   // Send the GraphQL request to create a quote tweet
   const response = await fetch(
-    'https://twitter.com/i/api/graphql/a1p9RWpkYKBjWv_I3WzS-A/CreateTweet',
+    'https://x.com/i/api/graphql/a1p9RWpkYKBjWv_I3WzS-A/CreateTweet',
     {
       headers,
       body: JSON.stringify({
@@ -1287,7 +1287,7 @@ export async function likeTweet(
 ): Promise<void> {
   // Prepare the GraphQL endpoint and payload
   const likeTweetUrl =
-    'https://twitter.com/i/api/graphql/lI07N6Otwv1PhnEgXILM7A/FavoriteTweet';
+    'https://x.com/i/api/graphql/lI07N6Otwv1PhnEgXILM7A/FavoriteTweet';
 
   // Retrieve necessary cookies and tokens
   const cookies = await auth.cookieJar().getCookies(likeTweetUrl);
@@ -1337,7 +1337,7 @@ export async function retweet(
 ): Promise<void> {
   // Prepare the GraphQL endpoint and payload
   const retweetUrl =
-    'https://twitter.com/i/api/graphql/ojPdsZsimiJrUGLR1sjUtA/CreateRetweet';
+    'https://x.com/i/api/graphql/ojPdsZsimiJrUGLR1sjUtA/CreateRetweet';
 
   // Retrieve necessary cookies and tokens
   const cookies = await auth.cookieJar().getCookies(retweetUrl);

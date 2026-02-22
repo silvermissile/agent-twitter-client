@@ -78,9 +78,9 @@ import {
   SendDirectMessageResponse,
 } from './messages';
 
-const twUrl = 'https://twitter.com';
+const twUrl = 'https://x.com';
 const UserTweetsUrl =
-  'https://twitter.com/i/api/graphql/E3opETHurmVJflFsUBVuUQ/UserTweets';
+  'https://x.com/i/api/graphql/E3opETHurmVJflFsUBVuUQ/UserTweets';
 
 export interface ScraperOptions {
   /**

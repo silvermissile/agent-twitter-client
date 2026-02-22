@@ -236,7 +236,7 @@ export class TwitterGuestAuth implements TwitterAuth {
   private getCookieJarUrl(): string {
     return typeof document !== 'undefined'
       ? document.location.toString()
-      : 'https://twitter.com';
+      : 'https://x.com';
   }
 
   /**
